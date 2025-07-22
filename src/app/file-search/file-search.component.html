@@ -1,0 +1,26 @@
+<div class="search-container">
+  <h2>Recherche de Fichiers et Dossiers</h2>
+  <input type="text" (input)="search($event)" placeholder="Entrez un nom de fichier ou de dossier...">
+  
+  <div *ngIf="loading" class="spinner"></div>
+
+  <ul *ngIf="!loading && results.length > 0" class="results-list">
+    <li *ngFor="let result of results">
+      <span *ngIf="result.type === 'directory'" class="icon-folder">📁</span>
+      <span *ngIf="result.type === 'file'">
+        <span [ngSwitch]="getFileTypeIcon(result.name)">
+          <span *ngSwitchCase="'pdf'">📄</span>
+          <span *ngSwitchCase="'word'">📝</span>
+          <span *ngSwitchCase="'excel'">📊</span>
+          <span *ngSwitchCase="'image'">🖼️</span>
+          <span *ngSwitchDefault>📃</span>
+        </span>
+      </span>
+      {{ result.name }}
+    </li>
+  </ul>
+
+  <p *ngIf="!loading && results.length === 0 && currentTerm">
+    Aucun résultat trouvé.
+  </p>
+</div>

@@ -1,0 +1,15 @@
+<div class="demande-credit-container">
+  <h2>Demande de Conge</h2>
+  <form (ngSubmit)="envoyerDemande()">
+    <label>Nombre de jours :</label>
+    <input type="number" [(ngModel)]="jours" name="jours" min="1" required>
+    <label>Cause du Conge :</label>
+    <textarea [(ngModel)]="cause" name="cause" required></textarea>
+    <label>Date de début :</label>
+    <input type="date" [(ngModel)]="dateDebut" name="dateDebut" [min]="today()" required>
+    <label>Date de fin :</label>
+    <input type="date" [(ngModel)]="dateFin" name="dateFin" [min]="dateDebut || today()" required>
+    <button type="submit">Valider</button>
+  </form>
+  <div class="message" *ngIf="message">{{ message }}</div>
+</div> 

@@ -1,0 +1,60 @@
+.admin-it-demandes-container {
+  max-width: 900px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px #bbb;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.admin-it-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 18px;
+  font-size: 15px;
+}
+.admin-it-table th, .admin-it-table td {
+  border: 1px solid #e0e7ef;
+  padding: 8px 6px;
+  text-align: center;
+}
+.admin-it-table th {
+  background: #f4f6fb;
+  color: #1976d2;
+}
+.admin-it-table tr:nth-child(even) {
+  background: #f9f9f9;
+}
+.admin-it-table button {
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-right: 6px;
+  transition: background 0.2s;
+}
+.admin-it-table button:hover {
+  background: #125ea2;
+}
+.aucune-demande {
+  color: #888;
+  text-align: center;
+  margin-top: 12px;
+}
+.statut-en-attente { color: #ff9800; font-weight: bold; }
+.statut-approuvee { color: #388e3c; font-weight: bold; }
+.statut-refusee { color: #d32f2f; font-weight: bold; }
+@media (max-width: 900px) {
+  .admin-it-demandes-container {
+    padding: 12px 2vw;
+  }
+  .admin-it-table th, .admin-it-table td {
+    font-size: 13px;
+    padding: 5px 2px;
+  }
+}

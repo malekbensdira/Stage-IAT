@@ -1,0 +1,88 @@
+<!-- Par exemple, un header ou navbar -->
+
+<nav class="main-navbar" *ngIf="isAuthenticated()">
+  <a routerLink="/home">
+    <img src="assets/img/logo.png" alt="Logo" class="main-logo">
+  </a>
+ 
+  <div class="nav-links" *ngIf="isAdmin()">
+    <a routerLink="/admin-dashboard" routerLinkActive="active-link">Dashboard</a>
+    <a routerLink="/admin-chatbot" routerLinkActive="active-link">Chatbot</a>
+    <a routerLink="/admin-users" routerLinkActive="active-link">Gestion des utilisateurs</a>
+    <a routerLink="/admin-demandes" routerLinkActive="active-link">Demandes de congé</a>
+    <a routerLink="/admin-it-demandes" routerLinkActive="active-link">Demandes IT</a>
+  </div>
+  <div class="nav-links" *ngIf="!isAdmin()">
+    <a routerLink="/chatbot" routerLinkActive="active-link">Chatbot</a>
+    <a routerLink="/messenger" routerLinkActive="active-link">Messagerie</a>
+    <a routerLink="/demande-credit" routerLinkActive="active-link">Demande de Conge</a>
+    <a routerLink="/demande-it" routerLinkActive="active-link">Demande IT</a>
+    <a routerLink="/file-search" routerLinkActive="active-link">Recherche de Fichiers</a>
+  </div>
+  <div class="nav-actions">
+    <button class="nav-btn nav-param" (click)="goToSettings()">Paramètres</button>
+    <button class="nav-btn nav-logout" (click)="logout()">Déconnexion</button>
+  </div>
+</nav>
+
+
+
+<!-- Image de fond globale -->
+<div class="background"></div>
+
+<router-outlet></router-outlet>
+
+<!-- Footer ou autre contenu commun -->
+<footer>  </footer>
+
+<script>
+// Détection IP locale (simplifiée)
+let isLocal = false;
+function checkLocalNetwork() {
+  let RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
+  if (RTCPeerConnection) {
+    let rtc = new RTCPeerConnection({iceServers:[]});
+    rtc.createDataChannel('');
+    rtc.createOffer().then(offer => rtc.setLocalDescription(offer));
+    rtc.onicecandidate = evt => {
+      if (evt && evt.candidate && evt.candidate.candidate) {
+        let ipMatch = evt.candidate.candidate.match(/([0-9]{1,3}(\.[0-9]{1,3}){3})/);
+        if (ipMatch) {
+          let ip = ipMatch[1];
+          if (
+            ip.startsWith('10.') ||
+            ip.startsWith('192.168.') ||
+            ip.startsWith('172.16.') || ip.startsWith('172.17.') || ip.startsWith('172.18.') || ip.startsWith('172.19.') ||
+            ip.startsWith('172.20.') || ip.startsWith('172.21.') || ip.startsWith('172.22.') || ip.startsWith('172.23.') ||
+            ip.startsWith('172.24.') || ip.startsWith('172.25.') || ip.startsWith('172.26.') || ip.startsWith('172.27.') ||
+            ip.startsWith('172.28.') || ip.startsWith('172.29.') || ip.startsWith('172.30.') || ip.startsWith('172.31.')
+          ) {
+            isLocal = true;
+          }
+        }
+      }
+    };
+  }
+  fetch('https://api.ipify.org?format=json').then(r=>r.json()).then(data=>{
+    let ip = data.ip;
+    if (
+      ip.startsWith('10.') ||
+      ip.startsWith('192.168.') ||
+      (ip.startsWith('172.') && +ip.split('.')[1] >= 16 && +ip.split('.')[1] <= 31)
+    ) {
+      isLocal = true;
+    }
+  });
+}
+checkLocalNetwork();
+
+function goToLocalService(url) {
+  setTimeout(() => {
+    if (isLocal) {
+      window.location.href = url;
+    } else {
+      alert("Vous devez être connecté au réseau local de l'entreprise pour accéder à ce service.");
+    }
+  }, 400);
+}
+</script>

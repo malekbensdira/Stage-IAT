@@ -1,0 +1,107 @@
+/* Ce fichier est volontairement laissé vide. Les styles globaux sont dans src/styles.css */
+
+.main-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 0 0 0;
+  min-height: 64px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+}
+.main-navbar .main-logo {
+  height: 48px;
+  margin-right: 18px;
+}
+.main-navbar .nav-links {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0 12px;
+}
+.main-navbar .nav-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav-btn.nav-logout {
+  background: #d32f2f;
+  color: #fff;
+}
+.nav-btn.nav-logout:hover {
+  background: #b71c1c;
+}
+.nav-btn.nav-param {
+  background: #eee;
+  color: #1976d2;
+  border: 1px solid #1976d2;
+}
+.nav-btn.nav-param:hover {
+  background: #1976d2;
+  color: #fff;
+}
+
+.main-navbar .nav-links a,
+.main-navbar .nav-links .nav-btn {
+  display: inline-block;
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 18px;
+  margin: 0 6px 6px 0;
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 4px rgba(25, 118, 210, 0.08);
+  font-family: inherit;
+  vertical-align: middle;
+  min-width: 140px;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.main-navbar .nav-links .nav-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  border: none;
+}
+
+.main-navbar .nav-links a.active-link,
+.main-navbar .nav-links .nav-btn:active {
+  background: #125ea2;
+  color: #fff;
+}
+
+.main-navbar .nav-links a:hover,
+.main-navbar .nav-links .nav-btn:hover,
+.main-navbar .nav-links a:focus,
+.main-navbar .nav-links .nav-btn:focus {
+  background: #1565c0;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.15);
+}
+
+.main-navbar .nav-links a:focus,
+.main-navbar .nav-links .nav-btn:focus {
+  outline: 2px solid #1976d2;
+  outline-offset: 2px;
+}
+
+@media (max-width: 700px) {
+  .main-navbar .nav-links a,
+  .main-navbar .nav-links .nav-btn {
+    font-size: 15px;
+    padding: 8px 10px;
+    margin: 0 2px 4px 0;
+    min-width: 100px;
+  }
+  .main-navbar .nav-links {
+    gap: 0 4px;
+  }
+}

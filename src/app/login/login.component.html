@@ -1,0 +1,17 @@
+<div class="login-outer-wrapper">
+  <div class="login-container">
+    <form (ngSubmit)="login()">
+      <img src="assets/img/logo.png" alt="Logo" class="login-logo">
+      <h2>Connexion</h2>
+      <p class="login-subtitle">Bienvenue, veuillez vous connecter à votre espace</p>
+      <div class="login-field">
+        <input [(ngModel)]="email" name="email" placeholder="Email" required autocomplete="username">
+      </div>
+      <div class="login-field">
+        <input [(ngModel)]="motDePasse" name="motDePasse" type="password" placeholder="Mot de passe" required autocomplete="current-password">
+      </div>
+      <button type="submit">Se connecter</button>
+      <div *ngIf="error" class="login-error">{{ error }}</div>
+    </form>
+  </div>
+</div> 

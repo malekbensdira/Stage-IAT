@@ -1,0 +1,92 @@
+.demande-it-container {
+  max-width: 700px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px #bbb;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.demande-it-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.demande-it-form label {
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+.demande-it-form select, .demande-it-form textarea {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+.demande-it-form button {
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 8px;
+}
+.demande-it-form button:disabled {
+  background: #b3c6e0;
+  cursor: not-allowed;
+}
+.demande-it-form button:hover:not(:disabled) {
+  background: #125ea2;
+}
+.type-demande {
+  background: #f4f6fb;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-left: 8px;
+  font-weight: 500;
+}
+.approbations {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.suivi-demandes {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 18px;
+  font-size: 15px;
+}
+.suivi-demandes th, .suivi-demandes td {
+  border: 1px solid #e0e7ef;
+  padding: 8px 6px;
+  text-align: center;
+}
+.suivi-demandes th {
+  background: #f4f6fb;
+  color: #1976d2;
+}
+.suivi-demandes tr:nth-child(even) {
+  background: #f9f9f9;
+}
+.aucune-demande {
+  color: #888;
+  text-align: center;
+  margin-top: 12px;
+}
+.statut-en-attente { color: #ff9800; font-weight: bold; }
+.statut-approuvee { color: #388e3c; font-weight: bold; }
+.statut-refusee { color: #d32f2f; font-weight: bold; }
+@media (max-width: 800px) {
+  .demande-it-container {
+    padding: 12px 2vw;
+  }
+  .suivi-demandes th, .suivi-demandes td {
+    font-size: 13px;
+    padding: 5px 2px;
+  }
+}

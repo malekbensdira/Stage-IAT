@@ -1,0 +1,22 @@
+<div class="parametres-container">
+  <h2>Paramètres du compte</h2>
+  <form (ngSubmit)="enregistrer()" class="profil-form">
+    <label>Nom :</label>
+    <input [(ngModel)]="nom" name="nom" required>
+    <label>Prénom :</label>
+    <input [(ngModel)]="prenom" name="prenom" required>
+    <label>Email :</label>
+    <input [(ngModel)]="email" name="email" disabled>
+    <button type="submit">Enregistrer</button>
+  </form>
+
+  <h3>Changer le mot de passe</h3>
+  <form (ngSubmit)="changerMotDePasse()" class="mdp-form">
+    <label>Mot de passe actuel :</label>
+    <input [(ngModel)]="motDePasse" name="motDePasse" type="password" required>
+    <label>Nouveau mot de passe :</label>
+    <input [(ngModel)]="nouveauMotDePasse" name="nouveauMotDePasse" type="password" required>
+    <button type="submit">Changer le mot de passe</button>
+  </form>
+  <div class="message" *ngIf="message">{{ message }}</div>
+</div>

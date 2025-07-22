@@ -1,0 +1,63 @@
+<div class="demande-it-container">
+  <h2>Nouvelle demande IT</h2>
+  <form (ngSubmit)="soumettre()" class="demande-it-form">
+    <label>Catégorie :</label>
+    <select [(ngModel)]="categorie" name="categorie" (change)="onCategorieChange()" required>
+      <option value="" disabled selected>Choisir une catégorie</option>
+      <option *ngFor="let cat of data" [value]="cat.categorie">{{cat.categorie}}</option>
+    </select>
+
+    <label>Sous-type :</label>
+    <select [(ngModel)]="sousType" name="sousType" (change)="onSousTypeChange()" [disabled]="!categorie" required>
+      <option value="" disabled selected>Choisir un sous-type</option>
+      <option *ngFor="let st of sousTypes" [value]="st.nom">{{st.nom}}</option>
+    </select>
+
+    <div *ngIf="typeDemande">
+      <label>Type de demande :</label>
+      <span class="type-demande">{{typeDemande}}</span>
+    </div>
+    <div class="approbations" *ngIf="typeDemande">
+      <label>Préautorisé :</label>
+      <input type="checkbox" [checked]="preautorise" disabled>
+      <label>Responsable hiérarchique :</label>
+      <input type="checkbox" [checked]="responsableHierarchique" disabled>
+    </div>
+    <label>Commentaire :</label>
+    <textarea [(ngModel)]="commentaire" name="commentaire" placeholder="Commentaire (optionnel)"></textarea>
+    <button type="submit" [disabled]="!categorie || !sousType">Soumettre la demande</button>
+  </form>
+
+  <h3>Mes demandes IT</h3>
+  <table class="suivi-demandes" *ngIf="demandes.length">
+    <thead>
+      <tr>
+        <th>Catégorie</th>
+        <th>Sous-type</th>
+        <th>Type de demande</th>
+        <th>Préautorisé</th>
+        <th>Resp. hiérarchique</th>
+        <th>Commentaire</th>
+        <th>Statut</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let d of demandes">
+        <td>{{d.categorie}}</td>
+        <td>{{d.typeChangement}}</td>
+        <td>{{d.typeDemande}}</td>
+        <td><input type="checkbox" [checked]="d.preautorise" disabled></td>
+        <td><input type="checkbox" [checked]="d.responsableHierarchique" disabled></td>
+        <td>{{d.commentaire}}</td>
+        <td [ngClass]="{
+          'statut-en-attente': d.statut === 'En attente',
+          'statut-approuvee': d.statut === 'Approuvée',
+          'statut-refusee': d.statut === 'Refusée'
+        }">{{d.statut}}</td>
+        <td>{{d.dateSoumission}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="!demandes.length" class="aucune-demande">Aucune demande soumise pour le moment.</div>
+</div>

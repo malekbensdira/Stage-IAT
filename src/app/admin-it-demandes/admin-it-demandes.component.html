@@ -1,0 +1,41 @@
+<div class="admin-it-demandes-container">
+  <h2>Traitement des demandes IT</h2>
+  <table class="admin-it-table" *ngIf="demandes.length">
+    <thead>
+      <tr>
+        <th>Catégorie</th>
+        <th>Sous-type</th>
+        <th>Type de demande</th>
+        <th>Préautorisé</th>
+        <th>Resp. hiérarchique</th>
+        <th>Commentaire</th>
+        <th>Utilisateur</th>
+        <th>Statut</th>
+        <th>Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let d of demandes">
+        <td>{{d.categorie}}</td>
+        <td>{{d.typeChangement}}</td>
+        <td>{{d.typeDemande}}</td>
+        <td><input type="checkbox" [checked]="d.preautorise" disabled></td>
+        <td><input type="checkbox" [checked]="d.responsableHierarchique" disabled></td>
+        <td>{{d.commentaire}}</td>
+        <td>{{d.utilisateur}}</td>
+        <td [ngClass]="{
+          'statut-en-attente': d.statut === 'En attente',
+          'statut-approuvee': d.statut === 'Approuvée',
+          'statut-refusee': d.statut === 'Refusée'
+        }">{{d.statut}}</td>
+        <td>{{d.dateSoumission}}</td>
+        <td>
+          <button *ngIf="d.statut === 'En attente'" (click)="majStatut(d, 'Approuvée')">Approuver</button>
+          <button *ngIf="d.statut === 'En attente'" (click)="majStatut(d, 'Refusée')">Refuser</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="!demandes.length" class="aucune-demande">Aucune demande à traiter.</div>
+</div>

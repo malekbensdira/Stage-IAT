@@ -1,0 +1,42 @@
+{
+  "reservation salle de reunion": {
+    "redirection": "http://test-lien/reservation",
+    "synonymes": [
+      "salle",
+      "réserver salle",
+      "reservation salle",
+      "salle de réunion",
+      "réserver une salle",
+      "reserver salle",
+      "reserver une salle"
+    ]
+  },
+  "demande de conge": {
+    "redirection": "http://gdc/IAT-GDC/session/login",
+    "synonymes": ["congé", "conge", "demander conge", "demander congé,","conger"]
+  },
+  "autorisation de sortie": {
+    "redirection": "http://test-lien/sortie",
+    "synonymes": ["sortie", "autorisation sortie", "demande de sortie autorisation","autorisation"]
+  },
+  "gestion de deplacement": {
+    "redirection": "http://test-lien/deplacement",
+    "synonymes": ["deplacement", "déplacement", "demande de deplacement", "demande de déplacement"]
+  },
+  "declaration de besoin": {
+    "redirection": "http://10.68.5.204/iat/",
+    "synonymes": ["besoin", "declaration", "declaration de besoin"]
+  },
+  "demande d'achat": {
+    "redirection": "http://test-lien/achat",
+    "synonymes": ["achat", "demander achat","acheter"]
+  },
+  "demande de formation": {
+    "redirection": "http://test-lien/formation",
+    "synonymes": ["formation", "demander formation"]
+  },
+  "demande de recrutement": {
+    "redirection": "http://test-lien/recrutement",
+    "synonymes": ["recrutement", "demander recrutement"]
+  }
+} 

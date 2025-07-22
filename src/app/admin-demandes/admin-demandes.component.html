@@ -1,0 +1,43 @@
+<div class="admin-demandes-wrapper">
+  <h2>Gestion des demandes de congé</h2>
+  <div *ngIf="loading">Chargement...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+  <table class="demandes-table" *ngIf="demandes.length">
+    <thead>
+      <tr>
+        <th>Utilisateur</th>
+        <th>Email</th>
+        <th>Cause</th>
+        <th>Jours</th>
+        <th>Date début</th>
+        <th>Date fin</th>
+        <th>Date demande</th>
+        <th>Statut</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let d of demandes">
+        <td>{{ d.Prenom }} {{ d.Nom }}</td>
+        <td>{{ d.Email }}</td>
+        <td>{{ d.cause }}</td>
+        <td>{{ d.jours }}</td>
+        <td>{{ d.date_debut }}</td>
+        <td>{{ d.date_fin }}</td>
+        <td>{{ d.date_demande | date:'short' }}</td>
+        <td>
+          <span [ngClass]="{
+            'statut-attente': d.statut === 'en_attente',
+            'statut-accepte': d.statut === 'accepte',
+            'statut-refuse': d.statut === 'refuse'
+          }">{{ d.statut }}</span>
+        </td>
+        <td>
+          <button *ngIf="d.statut === 'en_attente'" (click)="majStatut(d, 'accepte')">Approuver</button>
+          <button *ngIf="d.statut === 'en_attente'" (click)="majStatut(d, 'refuse')">Refuser</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p *ngIf="!demandes.length && !loading">Aucune demande pour le moment.</p>
+</div>
