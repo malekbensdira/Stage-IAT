@@ -26,7 +26,7 @@ def find_items(root_dir, query):
                 # Construit le chemin complet pour vérifier le type
                 full_path = os.path.join(dirpath, name)
                 item_type = 'directory' if os.path.isdir(full_path) else 'file'
-                results.append({'name': name, 'type': item_type})
+                results.append({'name': name, 'type': item_type, 'full_path': full_path})
 
     # Élimine les doublons potentiels en gardant la dernière occurrence trouvée
     unique_results = {item['name']: item for item in results}
@@ -41,6 +41,18 @@ def search():
         
     results = find_items(SEARCH_DIRECTORY, filename)
     return jsonify(results)
+
+@app.route('/open', methods=['POST'])
+def open_path():
+    data = request.get_json()
+    path = data.get('path')
+    if not path or not os.path.exists(path):
+        return jsonify({'error': 'Chemin invalide'}), 400
+    try:
+        os.startfile(path)
+        return jsonify({'success': True})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000) 

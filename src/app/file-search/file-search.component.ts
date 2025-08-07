@@ -50,4 +50,17 @@ export class FileSearchComponent {
     if (['png', 'jpg', 'jpeg', 'gif', 'bmp', 'svg', 'webp'].includes(ext)) return 'image';
     return '';
   }
+
+  openLocation(result: any) {
+    let pathToOpen = result.type === 'directory'
+      ? result.full_path
+      : result.full_path.substring(0, result.full_path.lastIndexOf('\\'));
+    this.http.post('http://localhost:5000/open', { path: pathToOpen }).subscribe({
+      next: () => {},
+      error: err => {
+        alert("Erreur lors de l'ouverture du dossier.");
+        console.error(err);
+      }
+    });
+  }
 }

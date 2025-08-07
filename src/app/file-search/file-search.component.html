@@ -16,7 +16,9 @@
           <span *ngSwitchDefault>📃</span>
         </span>
       </span>
-      {{ result.name }}
+      <a href="#" (click)="openLocation(result); $event.preventDefault()" style="margin-left:10px; text-decoration:underline; color:blue;">
+        {{ result.name }}
+      </a>
     </li>
   </ul>
 
