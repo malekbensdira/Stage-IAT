@@ -22,7 +22,7 @@ export class ChatbotService {
       if (!user || !user.id) {
         return Promise.resolve("Je n'arrive pas à récupérer votre compte utilisateur.");
       }
-      return this.http.get<{ joursRestants: number }>(`http://localhost:3000/api/conges/${user.id}`)
+      return this.http.get<{ joursRestants: number }>(`/api/conges/${user.id}`)
         .toPromise()
         .then(data => `Il vous reste ${data.joursRestants} jours de congé.`)
         .catch(() => "Impossible de récupérer vos jours de congé pour le moment.");
@@ -83,6 +83,6 @@ export class ChatbotService {
   }
 
   envoyerDemandeCredit(demande: { jours: number, cause: string, dateDebut: string, dateFin: string }) {
-    return this.http.post<any>('http://localhost:3000/api/demandes', demande);
+    return this.http.post<any>('/api/demandes', demande);
   }
 }

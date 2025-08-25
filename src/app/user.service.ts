@@ -13,7 +13,7 @@ export interface User {
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private apiUrl = 'http://localhost:3000/api';
+  private apiUrl = '/api';
   private currentUser: User | null = null;
   private token: string | null = null;
 

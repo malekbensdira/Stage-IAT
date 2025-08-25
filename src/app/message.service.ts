@@ -11,7 +11,7 @@ export interface Message {
 
 @Injectable({ providedIn: 'root' })
 export class MessageService {
-  private apiUrl = 'http://localhost:3000/api';
+  private apiUrl = '/api';
 
   constructor(private http: HttpClient) {}
 

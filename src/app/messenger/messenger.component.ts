@@ -113,7 +113,7 @@ export class MessengerComponent implements OnInit {
     this.userService.getUserList().subscribe(users => {
       this.users = users.filter(u => u.id !== this.currentUser.id);
       // Récupère les messages non lus pour l'utilisateur courant
-      this.http.get<{ sender_id: number, unread: number }[]>(`http://localhost:3000/api/messages/unread/${this.currentUser.id}`)
+      this.http.get<{ sender_id: number, unread: number }[]>(`/api/messages/unread/${this.currentUser.id}`)
         .subscribe(unreadList => {
           for (const unread of unreadList) {
             const user = this.users.find(u => u.id === unread.sender_id);
@@ -128,7 +128,7 @@ export class MessengerComponent implements OnInit {
   selectUser(user: User) {
     this.selectedUser = user;
     // Marquer les messages comme lus
-    this.http.post('http://localhost:3000/api/messages/markAsRead', {
+    this.http.post('/api/messages/markAsRead', {
       from: user.id, // l'expéditeur
       to: this.currentUser.id // le destinataire (utilisateur courant)
     }).subscribe(() => {

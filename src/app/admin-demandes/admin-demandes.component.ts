@@ -39,7 +39,7 @@ export class AdminDemandesComponent implements OnInit {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     
-    this.http.get<Demande[]>('http://localhost:3000/api/demandes', { headers }).subscribe({
+    this.http.get<Demande[]>('/api/demandes', { headers }).subscribe({
       next: (data) => {
         this.demandes = data;
         this.loading = false;
